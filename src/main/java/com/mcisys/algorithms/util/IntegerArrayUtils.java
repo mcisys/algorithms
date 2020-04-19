@@ -20,6 +20,12 @@ public class IntegerArrayUtils {
         return true;
     }
 
+    public static void swap(int[] array, int i, int j) {
+        array[i] = array[i] ^ array[j];
+        array[j] = array[i] ^ array[j];
+        array[i] = array[i] ^ array[j];
+    }
+
     public static int[] copyArray(int[] array) {
         if (array == null) return null;
         int[] res = new int[array.length];

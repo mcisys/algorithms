@@ -1,4 +1,4 @@
-package main.java.com.mcisys.algorithms;
+package main.java.com.mcisys.algorithms.sort;
 
 import main.java.com.mcisys.algorithms.util.IntegerArrayUtils;
 
@@ -6,6 +6,11 @@ import java.util.Arrays;
 
 public class SelectionSort {
 
+    /**
+     * 0~n-1 找到最小值与0位置交换
+     * 1~n-1 找到最小值与1位置交换
+     * @param array
+     */
     private static void selectionSort(int[] array) {
         if (array == null || array.length < 2) return;
         //0~n-1
@@ -17,18 +22,9 @@ public class SelectionSort {
                 minIndex = array[j] < array[minIndex] ? j : minIndex;
             }
             if (i != minIndex) {
-                swap(array, i, minIndex);
+                IntegerArrayUtils.swap(array, i, minIndex);
             }
         }
-    }
-
-    private static void swap(int[] array, int i, int j) {
-        array[i] = array[i] ^ array[j];
-        array[j] = array[i] ^ array[j];
-        array[i] = array[i] ^ array[j];
-//        int temp = array[i];
-//        array[i] = array[j];
-//        array[j] = temp;
     }
 
     private static void comparator(int[] arr) {
