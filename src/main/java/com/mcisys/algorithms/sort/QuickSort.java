@@ -3,6 +3,7 @@ package main.java.com.mcisys.algorithms.sort;
 import main.java.com.mcisys.algorithms.util.IntegerArrayUtils;
 
 import java.util.Arrays;
+import java.util.Random;
 
 public class QuickSort {
 
@@ -31,35 +32,35 @@ public class QuickSort {
         process(arr, 0, arr.length - 1);
     }
 
-    private static void process(int[] arr, int l, int r) {
-        if (l >= r) return;
-        int[] res = netherlandsFlag(arr, l, r);
-        process(arr, l, res[0] - 1);
-        process(arr, res[1] + 1, r);
+    private static void process(int[] arr, int L, int R) {
+        if (L >= R) return;
+        //随机从arr中取一个数作为划分值，时间复杂度能收敛到O(N*logN)
+        int[] res = partition(arr, L, R, arr[L + new Random().nextInt(R - L + 1)]);
+        process(arr, L, res[0] - 1);
+        process(arr, res[1] + 1, R);
     }
 
-    //arr[l...r] 荷兰国旗问题的划分，以arr[r]做划分值
-    private static int[] netherlandsFlag(int[] arr, int l, int r) {
-        if (l > r) {
+    //在arr[L...R]范围上，以num做划分进行partition，将arr分成三个区域，小于num区，等于num区，大于num区
+    private static int[] partition(int[] arr, int L, int R, int num) {
+        if (L > R) {
             return new int[]{-1, -1};
         }
-        if (l == r) {
-            return new int[]{l, r};
+        if (L == R) {
+            return new int[]{L, R};
         }
-        int less = l - 1;
-        int more = r;
-        int i = l;
-        while (i < more) {
-            if (arr[i] == arr[r]) {
-                i++;
-            } else if (arr[i] < arr[r]) {
-                swap(arr, i++, ++less);
+        int less = L - 1;
+        int more = R + 1;
+        int index = L;
+        while (index < more) {
+            if (arr[index] == num) {
+                index++;
+            } else if (arr[index] < num) {
+                swap(arr, index++, ++less);
             } else {
-                swap(arr, i, --more);
+                swap(arr, index, --more);
             }
         }
-        swap(arr, more, r);
-        return new int[]{less + 1, more};
+        return new int[]{less + 1, more - 1};
     }
 
     private static void swap(int[] array, int i, int j) {
