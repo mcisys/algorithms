@@ -2,7 +2,7 @@ package main.java.com.mcisys.algorithms.search;
 
 /**
  * 在一个无序数组中，找到第k小的数
- * 1、用大根堆来做，时间复杂度O(logk)
+ * 1、用大根堆来做，时间复杂度O(Nlogk)
  * 2、改写快排，时间复杂度O(N)
  * 3、bfprt，时间复杂度O(N)
  */
