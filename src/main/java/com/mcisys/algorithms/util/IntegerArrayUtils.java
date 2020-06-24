@@ -5,7 +5,7 @@ public class IntegerArrayUtils {
     public static void printArray(int[] array) {
         if (array == null) return;
         for (int o : array) {
-            System.out.println(o + " ");
+            System.out.print(o + " ");
         }
         System.out.println();
     }
